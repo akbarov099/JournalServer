@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { COLOR_KEYS } from "../../shared/group-colors.js";
+import { COLOR_KEYS } from "../shared/group-colors.js";
 
 const { Schema, model } = mongoose;
 

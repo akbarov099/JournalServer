@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { normalizePhone } from "../../shared/phone.js";
+import { normalizePhone } from "../shared/phone.js";
 import { error as httpError, login, logout, requireAdmin, requireSession } from "./auth.js";
 import { connectorStatus, loadExcelRows, requireExcelAccess, revokeConnector, rotateConnector, writeExcelCsv } from "./excel.js";
 import excelOData from "./excelOData.js";

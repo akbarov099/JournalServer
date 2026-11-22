@@ -1,6 +1,6 @@
 import { createHash, randomBytes, randomUUID, scrypt, timingSafeEqual } from "node:crypto";
 import { promisify } from "node:util";
-import { normalizePhone } from "../../shared/phone.js";
+import { normalizePhone } from "../shared/phone.js";
 import { adminAccount } from "./admin.config.js";
 import { Session, Teacher } from "./models.js";
 

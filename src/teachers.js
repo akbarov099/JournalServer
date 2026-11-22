@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { normalizePhone } from "../../shared/phone.js";
+import { normalizePhone } from "../shared/phone.js";
 import { error, isAdminPhone, passwordFields } from "./auth.js";
 import { ExcelConnector, Group, Session, Student, Teacher } from "./models.js";
 

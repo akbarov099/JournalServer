@@ -1,5 +1,5 @@
 import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
-import { EMPTY_RESULTS, summarizeRecords } from "../../shared/points.js";
+import { EMPTY_RESULTS, summarizeRecords } from "../shared/points.js";
 import { adminAccount } from "./admin.config.js";
 import { error } from "./auth.js";
 import { Group, Rec, Student } from "./models.js";

@@ -1,5 +1,5 @@
 import { createHash, randomBytes } from "node:crypto";
-import { EMPTY_RESULTS, summarizeRecords } from "../../shared/points.js";
+import { EMPTY_RESULTS, summarizeRecords } from "../shared/points.js";
 import { error, isCurrentAdminVersion } from "./auth.js";
 import { ExcelConnector, Group, Rec, Student, Teacher } from "./models.js";
 
