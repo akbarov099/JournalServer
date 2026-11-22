@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import { ExcelConnector, Group, Rec, Session, Teacher } from "./models.js";
 import routes from "./routes.js";
 
 const app = express();
@@ -21,6 +22,12 @@ if (fs.existsSync(path.join(dist, "index.html"))) {
 }
 
 app.use((err, _req, res, _next) => {
+  if (err.code === 11000) {
+    const message = err.keyPattern?.nameKey ? "Группа с таким названием уже существует"
+      : err.keyPattern?.phone ? "Этот телефон уже используется"
+      : "Такая запись уже существует";
+    return res.status(409).json({ error: message });
+  }
   if (err.name === "ValidationError") {
     const msg = Object.values(err.errors).map((e) => e.message).join("; ");
     return res.status(400).json({ error: msg || "Некорректные данные" });
@@ -36,7 +43,8 @@ const { MONGODB_URI = "mongodb://127.0.0.1:27017/journal", PORT = 4000 } = proce
 
 mongoose
   .connect(MONGODB_URI, { serverSelectionTimeoutMS: 8000 })
-  .then(() => {
+  .then(async () => {
+    await Promise.all([ExcelConnector.init(), Group.init(), Rec.init(), Session.init(), Teacher.init()]);
     console.log("MongoDB connected");
     app.listen(PORT, () => console.log(`API: http://localhost:${PORT}/api`));
   })
